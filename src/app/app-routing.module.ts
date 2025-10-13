@@ -1,15 +1,14 @@
-import { importProvidersFrom } from '@angular/core';
-import { provideRouter, RouterModule, Routes } from '@angular/router';
-import { UserListComponent } from './components/user-list/user-list';
-import { PaymentModalComponent } from './components/payment-modal/payment-modal';
+import { Routes } from '@angular/router';
+import { provideRouter, withHashLocation } from '@angular/router';
+import { LoginComponent } from './components/login/login';
+import { RegisterComponent } from './components/register/register';
+import { DashboardComponent } from './components/dashboard/dashboard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'users', pathMatch: 'full' },
-  { path: 'users', component: UserListComponent },
-  { path: 'payment', component: PaymentModalComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'dashboard', component: DashboardComponent },
 ];
 
-export const appRouting = [
-  provideRouter(routes),
-  importProvidersFrom(RouterModule)
-];
+export const appRouting = provideRouter(routes, withHashLocation());

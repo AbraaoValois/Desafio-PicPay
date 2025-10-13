@@ -10,13 +10,24 @@
 
       <div class="modal-body">
         <img [src]="receiver.avatar" class="avatar-modal mb-3" alt="{{ receiver.nome }}">
+
         <p class="text-muted">
           Saldo atual de <strong>{{ sender.nome }}</strong>: {{ sender.saldo | currency:'BRL' }}
         </p>
 
-        <input type="number" [(ngModel)]="amount" placeholder="Digite o valor" class="form-control mb-3">
+        <!-- Input com máscara -->
+        <input type="text" [(ngModel)]="amount" #amountInput="ngModel" placeholder="Digite o valor"
+               class="form-control mb-3" mask="separator.2" thousandSeparator="." decimalMarker=",">
 
-        <button class="btn btn-success w-100 fw-semibold py-2" (click)="pagar()" data-bs-dismiss="modal">
+        <!-- Mensagem de erro -->
+        <div *ngIf="amountInput.invalid && amountInput.touched" class="text-danger small mb-2">
+          Digite um valor válido
+        </div>
+
+        <button class="btn btn-success w-100 fw-semibold py-2"
+                (click)="pagar(amountInput)" 
+                data-bs-dismiss="modal"
+                [disabled]="amountInput.invalid">
           Confirmar Pagamento
         </button>
       </div>

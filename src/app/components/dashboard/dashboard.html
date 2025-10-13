@@ -1,0 +1,18 @@
+<div class="container text-center mt-4">
+  <h2 class="text-success fw-bold mb-4">Olá, {{ currentUser.nome }}! Enviar dinheiro</h2>
+
+  <div class="user-list">
+    <div class="user-card" *ngFor="let user of users" (click)="openPaymentModal(user)" [class.disabled]="user.id === currentUser.id">
+      <img [src]="user.avatar" class="avatar mb-3" alt="{{ user.nome }}">
+      <h5 class="fw-semibold mb-1">{{ user.nome }}</h5>
+      <p class="saldo text-muted mb-0">Saldo: {{ user.saldo | currency:'BRL' }}</p>
+    </div>
+  </div>
+</div>
+
+<app-payment-modal
+  *ngIf="selectedUser && selectedUser.id !== currentUser.id"
+  [receiver]="selectedUser"
+  [sender]="currentUser"
+  (onPay)="handlePayment($event)">
+</app-payment-modal>

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { UserListComponent } from './components/user-list/user-list';
+import { RouterModule } from '@angular/router';
+import { appRouting } from './app-routing.module';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [UserListComponent],
+  imports: [RouterModule],
   templateUrl: './app.html',
   styleUrls: ['./app.scss']
 })
