@@ -1,0 +1,21 @@
+<div class="user-list">
+  <div *ngFor="let user of users()" class="user-card">
+    <div class="user-info">
+      <h3>{{ user.name }}</h3>
+      <p>{{ user.username }}</p>
+      <p>Email: {{ user.email }}</p>
+      <p class="balance">Saldo: R$ {{ user.balance | number:'1.2-2' }}</p>
+    </div>
+    <button class="btn-pay" (click)="openPaymentModal(user.id)">Pagar</button>
+  </div>
+</div>
+
+<!-- Modal de pagamento -->
+<app-payment-modal
+  *ngIf="showPaymentModal()"
+  [user]="selectedUser"
+  [cards]="cards()"
+  [(selectedCard)]="selectedCard"
+  [(amount)]="amount"
+  (close)="closePaymentModal()"
+></app-payment-modal>

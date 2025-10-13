@@ -1,0 +1,23 @@
+<div class="modal-backdrop">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Pagamento para {{ user?.name }}</h2>
+      <button class="close-btn" (click)="closeModal()">✕</button>
+    </div>
+
+    <div class="modal-body">
+      <label>Valor</label>
+      <input type="number" [(ngModel)]="amount" (ngModelChange)="onAmountChange($event)" placeholder="R$ 0,00" />
+
+      <label>Selecione o cartão</label>
+      <select [(ngModel)]="selectedCard" (ngModelChange)="onCardChange($event)">
+        <option *ngFor="let card of cards" [value]="card.id">{{ card.name }}</option>
+      </select>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-cancel" (click)="closeModal()">Cancelar</button>
+      <button class="btn-confirm" [disabled]="!amount || !selectedCard">Confirmar</button>
+    </div>
+  </div>
+</div>

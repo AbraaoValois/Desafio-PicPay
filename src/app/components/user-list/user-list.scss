@@ -1,0 +1,47 @@
+.user-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  padding: 1rem;
+
+  .user-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 1rem;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    .user-info {
+      text-align: center;
+      margin-bottom: 1rem;
+
+      .balance {
+        font-weight: bold;
+        color: #2ecc71;
+      }
+    }
+
+    .btn-pay {
+      background-color: #00c853;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #00b44a;
+      }
+    }
+  }
+}
