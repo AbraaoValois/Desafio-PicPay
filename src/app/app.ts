@@ -1,13 +1,11 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { UserListComponent } from './components/user-list/user-list';
 
 @Component({
   selector: 'app-root',
-  standalone: true,       // adiciona standalone
-  imports: [RouterOutlet], // ok para standalone
+  standalone: true,
+  imports: [UserListComponent],
   templateUrl: './app.html',
-  styleUrls: ['./app.scss']  // corrigido
+  styleUrls: ['./app.scss']
 })
-export class App {
-  protected readonly title = signal('desafio-picpay');
-}
+export class App {}

@@ -1,21 +1,18 @@
-<div class="user-list">
-  <div *ngFor="let user of users()" class="user-card">
-    <div class="user-info">
-      <h3>{{ user.name }}</h3>
-      <p>{{ user.username }}</p>
-      <p>Email: {{ user.email }}</p>
-      <p class="balance">Saldo: R$ {{ user.balance | number:'1.2-2' }}</p>
+<div class="container text-center mt-4">
+  <h2 class="mb-4 text-success fw-bold">Enviar dinheiro</h2>
+
+  <div class="user-list">
+    <div class="user-card" *ngFor="let user of users" (click)="openPaymentModal(user)">
+      <img [src]="user.avatar" class="avatar mb-3" alt="{{ user.nome }}">
+      <h5 class="fw-semibold mb-1">{{ user.nome }}</h5>
+      <p class="saldo text-muted mb-0">Saldo: {{ user.saldo | currency:'BRL' }}</p>
     </div>
-    <button class="btn-pay" (click)="openPaymentModal(user.id)">Pagar</button>
   </div>
 </div>
 
-<!-- Modal de pagamento -->
 <app-payment-modal
-  *ngIf="showPaymentModal()"
-  [user]="selectedUser"
-  [cards]="cards()"
-  [(selectedCard)]="selectedCard"
-  [(amount)]="amount"
-  (close)="closePaymentModal()"
-></app-payment-modal>
+  *ngIf="selectedUser"
+  [receiver]="selectedUser"
+  [sender]="sender"
+  (onPay)="handlePayment($event)">
+</app-payment-modal>
