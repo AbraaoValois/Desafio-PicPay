@@ -1,18 +1,28 @@
-<div class="container text-center mt-4">
-  <h2 class="text-success fw-bold mb-4">Olá, {{ currentUser.nome }}! Enviar dinheiro</h2>
+<div class="container mt-4">
+  <div class="dashboard-header">
+    <h2>Olá, {{ currentUser.nome }}!</h2>
+    <button class="btn-logout" (click)="logout()">Sair</button>
+  </div>
+
+  <div class="user-balance">
+    <h5>Seu saldo</h5>
+    <h3>{{ currentUser.saldo | currency:'BRL' }}</h3>
+  </div>
 
   <div class="user-list">
-    <div class="user-card" *ngFor="let user of users" (click)="openPaymentModal(user)" [class.disabled]="user.id === currentUser.id">
-      <img [src]="user.avatar" class="avatar mb-3" alt="{{ user.nome }}">
-      <h5 class="fw-semibold mb-1">{{ user.nome }}</h5>
-      <p class="saldo text-muted mb-0">Saldo: {{ user.saldo | currency:'BRL' }}</p>
+    <div class="user-card" *ngFor="let user of users" 
+         (click)="openPaymentModal(user)" 
+         [class.disabled]="user.id === currentUser.id">
+      <img [src]="user.avatar" class="avatar" alt="{{ user.nome }}">
+      <h5>{{ user.nome }}</h5>
+      <p>Saldo: {{ user.saldo | currency:'BRL' }}</p>
     </div>
   </div>
-</div>
 
-<app-payment-modal
-  *ngIf="selectedUser && selectedUser.id !== currentUser.id"
-  [receiver]="selectedUser"
-  [sender]="currentUser"
-  (onPay)="handlePayment($event)">
-</app-payment-modal>
+  <app-payment-modal
+    *ngIf="selectedUser && selectedUser.id !== currentUser.id"
+    [receiver]="selectedUser"
+    [sender]="currentUser"
+    (onPay)="handlePayment($event)">
+  </app-payment-modal>
+</div>

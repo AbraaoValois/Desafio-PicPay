@@ -1,18 +1,6 @@
 .register-container {
-  max-width: 400px;
-  margin: 5rem auto;
-  padding: 2rem;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-  text-align: center;
-
-  input.form-control {
-    border-radius: 10px;
-  }
-
-  button.btn-success {
-    border-radius: 10px;
-    font-weight: 600;
+  @extend .login-container;
+  h2 {
+    color: #12b886;
   }
 }
